@@ -24,7 +24,12 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnSend.setOnClickListener {
-            sendDataToFragment()
+            var profileDetailsFragment = ProfileDetailsFragment()
+            var value = binding.etText.text.toString()
+            var bundle = Bundle()
+            bundle.putString("value", value)
+            profileDetailsFragment.arguments = bundle
+            setCurrentFragment(profileDetailsFragment)
         }
     }
 
@@ -34,14 +39,5 @@ class ProfileFragment : Fragment() {
             addToBackStack(null)
             commit()
         }
-    }
-
-    private fun sendDataToFragment() {
-        var profileDetailsFragment = ProfileDetailsFragment()
-        var value = binding.etText.text.toString()
-        var bundle = Bundle()
-        bundle.putString("value", value)
-        profileDetailsFragment.arguments = bundle
-        setCurrentFragment(profileDetailsFragment)
     }
 }
